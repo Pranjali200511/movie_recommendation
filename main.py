@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 # .env, cors config
 load_dotenv()
-TMDB_API_KEY = os.getenv("TMDB_API_KEY")
+TMDB_API_KEY = os.getenv("f73d142ca12d7200c427e11b98cfc4bf")
 
 TMDB_BASE = "https://api.themoviedb.org/3"
 TMDB_IMG_500 = "https://image.tmdb.org/t/p/w500"
