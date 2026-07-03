@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 # .env, cors config
 load_dotenv()
-TMDB_API_KEY = os.getenv("f73d142ca12d7200c427e11b98cfc4bf")
+TMDB_API_KEY = os.getenv("TMDB_API_KEY")
 
 TMDB_BASE = "https://api.themoviedb.org/3"
 TMDB_IMG_500 = "https://image.tmdb.org/t/p/w500"
@@ -92,10 +92,14 @@ def make_img_url(path: Optional[str]) -> Optional[str]:
 async def tmdb_get(path: str, params: Dict[str, Any]) -> Dict[str, Any]:
     q = dict(params)
     q["api_key"] = TMDB_API_KEY
+    print("TMDB_API_KEY=", TMDB_API_KEY)
 
     try:
         async with httpx.AsyncClient(timeout=20) as client:
             r = await client.get(f"{TMDB_BASE}{path}", params=q)
+            print(r.status_code)
+            print(r.text)
+            print(q)
     except httpx.RequestError as e:
         raise HTTPException(
             status_code=502,
